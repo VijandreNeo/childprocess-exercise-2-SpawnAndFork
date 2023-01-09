@@ -1,0 +1,30 @@
+{
+    "name": "childprocess-exercise-2-spawnandfork",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "lint": "eslint ."
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/VijandreNeo/childprocess-exercise-2-SpawnAndFork.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/VijandreNeo/childprocess-exercise-2-SpawnAndFork/issues"
+    },
+    "homepage": "https://github.com/VijandreNeo/childprocess-exercise-2-SpawnAndFork#readme",
+    "type": "module",
+    "devDependencies": {
+        "eslint": "^8.29.0",
+        "eslint-config-airbnb-base": "^15.0.0",
+        "eslint-plugin-import": "^2.26.0"
+    },
+    "dependencies": {
+        "dotenv": "^16.0.3"
+    }
+}
