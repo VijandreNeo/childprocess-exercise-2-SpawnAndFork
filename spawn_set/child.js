@@ -8,10 +8,6 @@ process.on('message', (message) => {
 
     process.send({ encryptedFileName, encryptedContent })
   } catch (error) {
-    console.error(error)
+    process.stderr.write(error)
   }
-})
-
-process.on('error', (error) => {
-  console.error(error)
 })
