@@ -1,4 +1,4 @@
-import { spawn } from 'node:child_process'
+import { fork } from 'node:child_process'
 import crypto from 'node:crypto'
 import path from 'node:path'
 import fs from 'node:fs'
@@ -21,7 +21,7 @@ try {
 
   const fileContent = fs.readFileSync(normalizedFilePath)
 
-  const childProcess = spawn('node', ['./child.js'], { stdio: ['ipc'] })
+  const childProcess = fork('./child.js')
 
   childProcess.send({ publicKey, fileName: normalizedFilePath, fileContent })
 
@@ -45,7 +45,7 @@ try {
     }
   })
 
-  childProcess.stderr.on('error', (error) => {
+  childProcess.on('error', (error) => {
     console.error(error)
   })
 } catch (error) {
