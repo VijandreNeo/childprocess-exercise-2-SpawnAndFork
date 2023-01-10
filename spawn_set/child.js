@@ -11,3 +11,7 @@ process.on('message', (message) => {
     console.error(error)
   }
 })
+
+process.on('error', (error) => {
+  console.error(error)
+})

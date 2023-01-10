@@ -45,7 +45,7 @@ try {
     }
   })
 
-  childProcess.stderr.on('error', (error) => {
+  childProcess.on('error', (error) => {
     console.error(error)
   })
 } catch (error) {
