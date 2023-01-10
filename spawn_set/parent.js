@@ -2,13 +2,11 @@ import { spawn } from 'node:child_process'
 import crypto from 'node:crypto'
 import path from 'node:path'
 import fs from 'node:fs'
-import * as dotenv from 'dotenv'
+import dotenv from 'dotenv'
 
 import generateKey from '../lib/keyGenerator.js'
 
 try {
-  console.time('Elapsed Time')
-
   const [, , inputFilePath] = process.argv
   const normalizedFilePath = path.normalize(inputFilePath)
 
@@ -18,8 +16,9 @@ try {
 
   const { secretPhrase } = dotenv.config().parsed
   const { publicKey, privateKey } = generateKey(secretPhrase)
-
   const fileContent = fs.readFileSync(normalizedFilePath)
+
+  console.time('Elapsed Time')
 
   const childProcess = spawn('node', ['./child.js'], { stdio: ['ipc'] })
 
@@ -39,7 +38,8 @@ try {
     if (path.basename(decryptedFileName) === path.basename(normalizedFilePath)) {
       if (decryptedMessage === fileContent.toString()) {
         console.timeEnd('Elapsed Time')
-        console.log(`Memory Used: ${process.memoryUsage().heapUsed}`)
+        console.log(`Memory Used: ${process.memoryUsage().heapUsed / 1048576} mb`)
+        childProcess.kill('SIGKILL')
         process.exit(0)
       }
     }
